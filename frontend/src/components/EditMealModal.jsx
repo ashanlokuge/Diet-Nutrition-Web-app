@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 export default function EditMealModal({ isOpen, onClose, meal, onUpdate }) {
   const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ export default function EditMealModal({ isOpen, onClose, meal, onUpdate }) {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5000/api/meals/${meal._id}`,
+        `${API_URL}/meals/${meal._id}`,
         formData,
         {
           headers: {
@@ -64,7 +65,7 @@ export default function EditMealModal({ isOpen, onClose, meal, onUpdate }) {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/meals/${meal._id}`, {
+      await axios.delete(`${API_URL}/meals/${meal._id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

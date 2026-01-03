@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config/api';
 import Navbar from '../components/Navbar';
 import EditProfileModal from '../components/EditProfileModal';
 import EditWeightGoalModal from '../components/EditWeightGoalModal';
@@ -45,7 +46,7 @@ export default function UserProfile() {
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/user/profile', {
+      const response = await axios.get(`${API_URL}/user/profile`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -74,7 +75,7 @@ export default function UserProfile() {
 
       // Get today's meals
       const today = new Date().toISOString().split('T')[0];
-      const response = await axios.get(`http://localhost:5000/api/meals?date=${today}`, {
+      const response = await axios.get(`${API_URL}/meals?date=${today}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -96,7 +97,7 @@ export default function UserProfile() {
 
       // Get today's water logs
       const today = new Date().toISOString().split('T')[0];
-      const response = await axios.get(`http://localhost:5000/api/water?startDate=${today}`, {
+      const response = await axios.get(`${API_URL}/water?startDate=${today}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -125,7 +126,7 @@ export default function UserProfile() {
 
       // Get today's workouts
       const today = new Date().toISOString().split('T')[0];
-      const response = await axios.get(`http://localhost:5000/api/workouts?startDate=${today}`, {
+      const response = await axios.get(`${API_URL}/workouts?startDate=${today}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

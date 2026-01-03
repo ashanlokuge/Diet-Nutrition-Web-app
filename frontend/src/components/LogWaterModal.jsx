@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 export default function LogWaterModal({ isOpen, onClose, onSuccess }) {
   const [amount, setAmount] = useState(250);
@@ -24,7 +25,7 @@ export default function LogWaterModal({ isOpen, onClose, onSuccess }) {
     try {
       const token = localStorage.getItem('token');
       
-      await axios.post('http://localhost:5000/api/water', {
+      await axios.post(`${API_URL}/water`, {
         amount: waterAmount,
         date: new Date()
       }, {

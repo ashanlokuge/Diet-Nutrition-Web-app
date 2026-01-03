@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 export default function OnboardingStep2() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export default function OnboardingStep2() {
         return;
       }
 
-      await axios.put('http://localhost:5000/api/user/profile', {
+      await axios.put(`${API_URL}/user/profile`, {
         primaryGoal: formData.primaryGoal,
         dietType: formData.dietType
       }, {

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 export default function EditProfileModal({ isOpen, onClose, user, onUpdate }) {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ export default function EditProfileModal({ isOpen, onClose, user, onUpdate }) {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:5000/api/user/profile', formData, {
+      const response = await axios.put(`${API_URL}/user/profile`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
