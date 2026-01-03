@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 import Navbar from '../components/Navbar';
 import AddFoodModal from '../components/AddFoodModal';
 import EditFoodModal from '../components/EditFoodModal';
@@ -34,7 +35,7 @@ const FoodDiary = () => {
     try {
       const token = localStorage.getItem('token');
       const dateStr = date.toISOString().split('T')[0];
-      const response = await axios.get(`http://localhost:5000/api/meals?date=${dateStr}`, {
+      const response = await axios.get(`${API_URL}/meals?date=${dateStr}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMeals(response.data.meals || []);
@@ -49,7 +50,7 @@ const FoodDiary = () => {
     try {
       const token = localStorage.getItem('token');
       const dateStr = date.toISOString().split('T')[0];
-      const response = await axios.get(`http://localhost:5000/api/meals/daily-summary?date=${dateStr}`, {
+      const response = await axios.get(`${API_URL}/meals/daily-summary?date=${dateStr}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDailySummary(response.data.summary);
@@ -62,7 +63,7 @@ const FoodDiary = () => {
     try {
       const token = localStorage.getItem('token');
       const dateStr = date.toISOString().split('T')[0];
-      const response = await axios.get(`http://localhost:5000/api/water?date=${dateStr}`, {
+      const response = await axios.get(`${API_URL}/water?date=${dateStr}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setWaterIntake({
@@ -101,7 +102,7 @@ const FoodDiary = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/meals/${mealId}`, {
+      await axios.delete(`${API_URL}/meals/${mealId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchMealsForDate(currentDate);

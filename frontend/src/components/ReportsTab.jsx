@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 const ReportsTab = () => {
   const [timePeriod, setTimePeriod] = useState('30');
@@ -24,10 +25,10 @@ const ReportsTab = () => {
       console.log('Fetching reports data for period:', timePeriod);
 
       const [summaryRes, calorieRes, macroRes, waterRes] = await Promise.all([
-        axios.get(`http://localhost:5000/api/reports/monthly-summary?days=${timePeriod}`, config),
-        axios.get(`http://localhost:5000/api/reports/calorie-trend?days=${timePeriod}`, config),
-        axios.get(`http://localhost:5000/api/reports/macro-split?days=${timePeriod}`, config),
-        axios.get(`http://localhost:5000/api/reports/water-trend`, config)
+        axios.get(`${API_URL}/reports/monthly-summary?days=${timePeriod}`, config),
+        axios.get(`${API_URL}/reports/calorie-trend?days=${timePeriod}`, config),
+        axios.get(`${API_URL}/reports/macro-split?days=${timePeriod}`, config),
+        axios.get(`${API_URL}/reports/water-trend`, config)
       ]);
 
       console.log('Summary response:', summaryRes.data);

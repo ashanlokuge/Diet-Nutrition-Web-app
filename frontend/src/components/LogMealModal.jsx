@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 export default function LogMealModal({ isOpen, onClose, onSuccess }) {
   const [mealType, setMealType] = useState('Breakfast');
@@ -27,7 +28,7 @@ export default function LogMealModal({ isOpen, onClose, onSuccess }) {
 
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/meals/search/${searchQuery}`, {
+        const response = await axios.get(`${API_URL}/meals/search/${searchQuery}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -56,7 +57,7 @@ export default function LogMealModal({ isOpen, onClose, onSuccess }) {
     try {
       const token = localStorage.getItem('token');
       
-      await axios.post('http://localhost:5000/api/meals', {
+      await axios.post(`${API_URL}/meals`, {
         mealType: mealType,
         foodName: selectedFood.name,
         servingSize: selectedFood.servingSize,
