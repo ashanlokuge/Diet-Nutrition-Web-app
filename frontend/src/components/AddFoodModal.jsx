@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 const AddFoodModal = ({ isOpen, onClose, onSuccess, initialMealType, selectedDate }) => {
   const [mealType, setMealType] = useState(initialMealType || 'Breakfast');
@@ -20,7 +21,7 @@ const AddFoodModal = ({ isOpen, onClose, onSuccess, initialMealType, selectedDat
   const searchFoods = async (query) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/meals/search/${query}`, {
+      const response = await axios.get(`${API_URL}/meals/search/${query}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSearchResults(response.data.foods || []);
@@ -53,7 +54,7 @@ const AddFoodModal = ({ isOpen, onClose, onSuccess, initialMealType, selectedDat
       console.log('Adding meal for date:', mealDate);
       
       await axios.post(
-        'http://localhost:5000/api/meals',
+        `${API_URL}/meals`,
         {
           date: mealDate.toISOString(),
           mealType,

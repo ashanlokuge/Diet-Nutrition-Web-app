@@ -7,8 +7,7 @@ import EditMealModal from './EditMealModal';
 import LogMealModal from './LogMealModal';
 import LogWaterModal from './LogWaterModal';
 import LogWorkoutModal from './LogWorkoutModal';
-
-const API_URL = 'http://localhost:5000/api';
+import API_URL from '../config/api';
 
 export default function DashboardTab({ user, handleProfileUpdate, handleLogout }) {
   const [meals, setMeals] = useState([]);

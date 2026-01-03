@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 const EditFoodModal = ({ isOpen, onClose, meal, onSuccess }) => {
   const [foodName, setFoodName] = useState(meal?.foodName || '');
@@ -24,7 +25,7 @@ const EditFoodModal = ({ isOpen, onClose, meal, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/meals/${meal._id}`,
+        `${API_URL}/meals/${meal._id}`,
         {
           foodName,
           servingSize,

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 export default function EditWeightGoalModal({ isOpen, onClose, user, onUpdate }) {
   const [goalWeight, setGoalWeight] = useState(user?.goalWeight || '');
@@ -13,7 +14,7 @@ export default function EditWeightGoalModal({ isOpen, onClose, user, onUpdate })
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:5000/api/user/profile', 
+      const response = await axios.put(`${API_URL}/user/profile`, 
         { goalWeight: Number(goalWeight) }, 
         {
           headers: {
